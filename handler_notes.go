@@ -10,7 +10,7 @@ import (
 	"github.com/google/uuid"
 )
 
-func (cfg *apiConfig) handlerNotesGet(w http.ResponseWriter, r *http.Request, user database.User) {
+func (cfg *apiConfig) handlerNotesGet(w http.ResponseWriter, r *http.Request, user database.User){
 	posts, err := cfg.DB.GetNotesForUser(r.Context(), user.ID)
 	if err != nil {
 		respondWithError(w, http.StatusInternalServerError, "Couldn't get posts for user")
@@ -24,8 +24,7 @@ func (cfg *apiConfig) handlerNotesGet(w http.ResponseWriter, r *http.Request, us
 		return
 	}
 
-	respondWithJSON(w, http.StatusOK, postsResp)
-}
+	respondWithJSON(w, http.StatusOK, postsResp)}
 
 func (cfg *apiConfig) handlerNotesCreate(w http.ResponseWriter, r *http.Request, user database.User) {
 	type parameters struct {
